@@ -2,10 +2,13 @@
 
 #main-card {
     background-color: lightgray;
-    color: green;
+    color: blue;
 
-};
+}
 
+
+/* I cannot get this style to work */
 .current {
     background-color: lightskyblue;
-};
+    color:red;
+}
