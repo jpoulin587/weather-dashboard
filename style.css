@@ -12,3 +12,12 @@
     background-color: lightskyblue;
     color:red;
 }
+
+#city-name {
+    font-size: 200%;
+}
+
+.current-conditions {
+    color: darkblue;
+
+}

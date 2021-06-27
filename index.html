@@ -27,11 +27,15 @@
   <main class="container">
     <section class="row">
       <div class="col-12 col-md-2" id="main-card">
-        <h2>City Search will go here</h2>
-        <p>
-          there needs to be a search box here with a submit button.  Then below an empty div to append the search history.
-        </p>
+        <h2>City Search</h2>
+        <form id="city-search">
+          <input type="text" class="form-input w-100" id="search-input" name="search-input" placeholder="Enter Desired City" />
+          <button class="btn btn-info">Search</button>
+        </form>
+    
+        <ul id="search-history"></ul>
       </div>
+      <!--Current and 5 day forecast here------------------>
       <div class="col-12 col-md-9">
         <h2>Our Services</h2>
 
@@ -44,13 +48,16 @@
                 Current City Results
               </h3>
               <div class="card-body">
-                <p class="card-text">
-                  city<br>
-                  temp<br>
-                  wind<br>
-                  Humidity<br>
-                  UV Index
-                </p>
+                <div class="card-text">
+                  <p id="city-name" class="current-conditions"></p>
+                  <p id="today-date" class="current-conditions"></p>
+                  <p id="current-description" class="current-conditions"></p>
+                  <p id="current-temp" class="current-conditions"></p>
+                  <p id="current-wind" class="current-conditions"></p>
+                  <p id="current-humidity" class="current-conditions"></p>
+                  <p id="current-uvi" class="current-conditions"></p>
+
+                </div>
               </div>
             </div>
           </div>
