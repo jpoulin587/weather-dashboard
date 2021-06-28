@@ -31,7 +31,7 @@ function getWeather() {
     cache: 'reload',
   })
     .then(function (response) {
-      console.log(response);
+      //console.log(response);
       return response.json();
     })
     .then(function (data) {
@@ -39,15 +39,13 @@ function getWeather() {
       currentCityLat = data.coord.lat;
       //console.log(data);
       currentCityPull = data.name;
-
-      console.log(currentCityLon);
-      console.log(currentCityLat);
-
+      //console.log(currentCityLon);
+      //console.log(currentCityLat);
       fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + currentCityLat + '&lon=' + currentCityLon + '&units=imperial&exclude=minutely,hourly&APPID=0b17ac4effa78f1520a5cf1ab7d339e5', {
         cache: 'reload',
       })
         .then(function (response) {
-          console.log(response);
+          //console.log(response);
           return response.json();
         })
         .then(function (data) {
@@ -66,7 +64,6 @@ function populateCurrent(data) {
   console.log(data);
 
   // show current data  on the index.html
-  let nowUvi = data.current.uvi * 1;
   cityName.text("Current City: " + currentCityPull);
   //TODO this date is not pulling. 
   todayDate.text("Today's Date: " + myDate);
@@ -74,33 +71,21 @@ function populateCurrent(data) {
   currentTemp.text("Current Temp: " + data.current.temp + "F");
   currentWind.text("Current Wind: " + data.current.wind_speed + " MPH");
   currentHumidity.text("Current Humidity: " + data.current.humidity + "%");
-  currentUiv.text("Current UV Index: " + nowUvi)
+  currentUiv.text("Current UV Index: " + data.current.uvi)
 
   // This makes the color of the UV Index adjust with the severity 
   //TODO How do I add also make the text white with the green and red background
-  if (nowUvi <= 3.0) {
+  if (data.current.uvi <= 3.0) {
     $("#current-uvi").css("background-color", "green");
-  } else if (nowUvi > 3.0 && nowUvi < 6.0) {
+  } else if (data.current.uvi > 3.0 && data.current.uvi < 6.5) {
     $("#current-uvi").css("background-color", "yellow");
-  } else if (nowUvi >= 6.0) {
+  } else if (data.current.uvi >= 6.5) {
     $("#current-uvi").css("background-color", "red");
   };
 
   // populate the 5-day forecast
-  console.log("Weather data for day one \n----------");
-  console.log("Forecast date " + data.daily[0].dt);
-  console.log("Forecast description " + data.daily[0].weather[0].description);
-  console.log("Forecast humid " + data.daily[0].humidity);
-  console.log("Forecast hi temp " + data.daily[0].temp.max);
-  console.log("Forecast lo temp " + data.daily[0].temp.min);
-  console.log("Forecast wind " + data.daily[0].wind_speed);
-  //console.log(data.daily);
-
-
-  // make an array of the date we need
-  fiveDayData.push(data.daily[0].dt, data.daily[0].weather[0].description, data.daily[0].humidity, data.daily[0].temp.max, data.daily[0].temp.min, data.daily[0].wind_speed);
-  console.log(fiveDayData);
-
+ 
+ 
   //TODO go back another time a refactor this to make it work
   // TODO this should populate the 5-day forecast blocks
 
@@ -116,6 +101,7 @@ function populateCurrent(data) {
     console.log("low day " + i + " " + data.daily[i].temp.min);
     console.log("wind day " + i + " " + data.daily[i].wind_speed);
 
+    //TODO How do I populate this???
   }
 
   //   currentQuestion.choices.forEach(function(choice, i){
