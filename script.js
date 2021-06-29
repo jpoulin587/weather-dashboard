@@ -28,8 +28,8 @@ let searchInput = "bar harbor";
 
 
 
-function getWeather() {
-  fetch('https://api.openweathermap.org/data/2.5/weather?q=' + searchInput + '&units=imperial&APPID=0b17ac4effa78f1520a5cf1ab7d339e5', {
+function getWeather(city) {
+  fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&APPID=0b17ac4effa78f1520a5cf1ab7d339e5', {
     // The browser fetches the resource from the remote server without first looking in the cache.
     // The browser will then update the cache with the downloaded resource.
     cache: 'reload',
@@ -116,7 +116,7 @@ function populateCurrent(data) {
     var cardWind = document.createElement('p');
 
     function convertFiveDate(data) {
-    
+
       currentDate = data.daily[i].dt
       // from https://www.epochconverter.com/programming/#javascript
       fiveDateFull = new Date(currentDate * 1000);
@@ -128,7 +128,7 @@ function populateCurrent(data) {
       fiveDate = fiveDateString.substring(1, 11)
     };
     convertFiveDate(data)
-   
+
     cardDate.innerText = fiveDate;
     cardDesc.innerText = data.daily[i].weather[0].description;
     cardHumid.innerText = "humidity: " + data.daily[i].humidity;
@@ -170,16 +170,16 @@ function SearchCityForm(e) {
   searchHistory.append('<button class="btn btn-info history">' + searchInput + '</button>');
   $('input[name="search-input"]').val('');
 
-  
-  getWeather();
-  
+
+  getWeather(searchInput);
+
 };
 
-// week 04 activity 12
-// searchHistory.addEventListener("click", function() {
-// alert("button clicked");
-
-// });
+//week 04 activity 12
+$("#search-history").on("click", ".history", function () {
+  let city = $(this).text()
+getWeather(city)
+});
 
 
 
