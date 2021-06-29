@@ -106,7 +106,7 @@ function populateCurrent(data) {
     // console.log("low day " + i + " " + data.daily[i].temp.min);
     // console.log("wind day " + i + " " + data.daily[i].wind_speed);
 
-    
+
     var card = document.createElement('div');
     var cardDate = document.createElement('h4');
     var cardDesc = document.createElement('p');
@@ -116,6 +116,7 @@ function populateCurrent(data) {
     var cardWind = document.createElement('p');
 
     function convertFiveDate(data) {
+    
       currentDate = data.daily[i].dt
       // from https://www.epochconverter.com/programming/#javascript
       fiveDateFull = new Date(currentDate * 1000);
@@ -127,7 +128,7 @@ function populateCurrent(data) {
       fiveDate = fiveDateString.substring(1, 11)
     };
     convertFiveDate(data)
-
+   
     cardDate.innerText = fiveDate;
     cardDesc.innerText = data.daily[i].weather[0].description;
     cardHumid.innerText = "humidity: " + data.daily[i].humidity;
@@ -157,6 +158,7 @@ function convertCurrentDate(data) {
 
 };
 
+// this adds the event listener to the  search button and populates the search history list.
 // adapted from https://www.codegrepper.com/code-examples/javascript/how+to+get+data+from+input+field+in+javascript
 document.querySelector("form").addEventListener("submit", SearchCityForm);
 function SearchCityForm(e) {
@@ -164,11 +166,20 @@ function SearchCityForm(e) {
   console.log('search', searchInput)
   e.preventDefault();
   searchInput = $('input[name="search-input"]').val();
-  
-  searchHistory.append('<li>' + searchInput + '</li>');
+
+  searchHistory.append('<button class="btn btn-info history">' + searchInput + '</button>');
   $('input[name="search-input"]').val('');
 
-
+  
   getWeather();
+  
 };
+
+// week 04 activity 12
+// searchHistory.addEventListener("click", function() {
+// alert("button clicked");
+
+// });
+
+
 
