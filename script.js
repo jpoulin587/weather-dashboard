@@ -64,7 +64,7 @@ function getWeather() {
 //function to populate current weather
 
 function populateCurrent(data) {
-  console.log(data);
+  //console.log(data);
 
   // show current data  on the index.html
   cityName.text("Current City: " + currentCityPull);
@@ -96,12 +96,12 @@ function populateCurrent(data) {
   for (let i = 0; i < 5; i++) {
     //const dailyData = forecastDay[i];
     //console.log(dailyData);
-    console.log("date day " + i + " " + data.daily[i].dt);
-    console.log("outlook day " + i + " " + data.daily[i].weather[0].description);
-    console.log("humid day " + i + " " + data.daily[i].humidity);
-    console.log("hi day " + i + " " + data.daily[i].temp.max);
-    console.log("low day " + i + " " + data.daily[i].temp.min);
-    console.log("wind day " + i + " " + data.daily[i].wind_speed);
+    // console.log("date day " + i + " " + data.daily[i].dt);
+    // console.log("outlook day " + i + " " + data.daily[i].weather[0].description);
+    // console.log("humid day " + i + " " + data.daily[i].humidity);
+    // console.log("hi day " + i + " " + data.daily[i].temp.max);
+    // console.log("low day " + i + " " + data.daily[i].temp.min);
+    // console.log("wind day " + i + " " + data.daily[i].wind_speed);
 
     var card = document.createElement('div');
     var cardDate = document.createElement('h4');
@@ -114,16 +114,17 @@ function populateCurrent(data) {
     function convertFiveDate(data) {
       currentDate = data.daily[i].dt
       // from https://www.epochconverter.com/programming/#javascript
-      fiveDate = new Date(currentDate * 1000);
-      console.log("5day human date: " + fiveDate);
-
+      fiveDateFull = new Date(currentDate * 1000);
+      console.log("5day human date: " + fiveDateFull);
+      //console.log("type of: " + typeof fiveDateFull);
+      let fiveDateString = JSON.stringify(fiveDateFull);
+      console.log(fiveDateString);
+      //console.log("string? " + typeof fiveDateString);
+      fiveDate = fiveDateString.substring(1,11)
     };
     convertFiveDate(data)
 
-    cardDate.innerText = data.daily[i].dt;
-
-
-
+    cardDate.innerText = fiveDate;
     cardDesc.innerText = data.daily[i].weather[0].description;
     cardHumid.innerText = "humidity: " + data.daily[i].humidity;
     cardTempHi.innerText = "Hi Temp: " + data.daily[i].temp.max;
