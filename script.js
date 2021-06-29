@@ -120,7 +120,7 @@ function populateCurrent(data) {
       let fiveDateString = JSON.stringify(fiveDateFull);
       console.log(fiveDateString);
       //console.log("string? " + typeof fiveDateString);
-      fiveDate = fiveDateString.substring(1,11)
+      fiveDate = fiveDateString.substring(1, 11)
     };
     convertFiveDate(data)
 
@@ -140,11 +140,6 @@ function populateCurrent(data) {
     fiveDayList.append(card);
 
 
-
-
-
-
-
   };
 }; // this is the end of the populate function
 
@@ -158,11 +153,15 @@ function convertCurrentDate(data) {
 
 };
 
+// adapted from https://www.codegrepper.com/code-examples/javascript/how+to+get+data+from+input+field+in+javascript
+document.querySelector("form").addEventListener("submit", SearchCityForm);
+function SearchCityForm(e) {
+  searchInput = document.getElementById("search-input").value;
+  console.log('search', searchInput)
+  e.preventDefault();
+  getWeather();
+};
 
-
-
-
-getWeather();
 
 /*
 //---TODO Search field history list
