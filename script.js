@@ -164,43 +164,11 @@ function SearchCityForm(e) {
   console.log('search', searchInput)
   e.preventDefault();
   searchInput = $('input[name="search-input"]').val();
-  if (!searchInput) {
-    console.log('No city entered into form!');
-    return;
-  }
+  
   searchHistory.append('<li>' + searchInput + '</li>');
-
   $('input[name="search-input"]').val('');
 
 
   getWeather();
 };
-
-
-/*
-//---TODO Search field history list
-let citySearch = $('#city-search');
-let searchHistory = $('#search-history');
-let searchInput;
-
-function handleFormSubmit(event) {
-
-  event.preventDefault();
-
-  searchInput = $('input[name="search-input"]').val();
-
-  if (!searchInput) {
-    console.log('No city entered into form!');
-    return;
-  }
-
-  searchHistory.append('<li>' + searchInput + '</li>');
-
-  $('input[name="search-input"]').val('');
-  return searchInput;
-
-}
-
-citySearch.on('submit', handleFormSubmit);
-*/
 
