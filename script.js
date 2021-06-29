@@ -20,12 +20,14 @@ let currentHumidity = $('#current-humidity');
 let currentUiv = $('#current-uvi');
 let currentDesc = $('#current-description');
 let forecastDay;
-let fiveDayList = $('five-day-list');
-let fiveDayData = []
+let fiveDayList = document.getElementById("five-day-list");
+let searchInput = "bar harbor";
+
+
 
 
 function getWeather() {
-  fetch('https://api.openweathermap.org/data/2.5/weather?q=houston&units=imperial&APPID=0b17ac4effa78f1520a5cf1ab7d339e5', {
+  fetch('https://api.openweathermap.org/data/2.5/weather?q=' + searchInput + '&units=imperial&APPID=0b17ac4effa78f1520a5cf1ab7d339e5', {
     // The browser fetches the resource from the remote server without first looking in the cache.
     // The browser will then update the cache with the downloaded resource.
     cache: 'reload',
@@ -37,7 +39,7 @@ function getWeather() {
     .then(function (data) {
       currentCityLon = data.coord.lon;
       currentCityLat = data.coord.lat;
-      //console.log(data);
+      console.log(data);
       currentCityPull = data.name;
       //console.log(currentCityLon);
       //console.log(currentCityLat);
@@ -49,8 +51,9 @@ function getWeather() {
           return response.json();
         })
         .then(function (data) {
+          convertCurrentDate(data);
           populateCurrent(data);
-          convertDate(data);
+
 
 
         })
@@ -84,9 +87,8 @@ function populateCurrent(data) {
   };
 
   // populate the 5-day forecast
- 
- 
-  //TODO go back another time a refactor this to make it work
+
+
   // TODO this should populate the 5-day forecast blocks
 
   let forecastDay = data.daily;
@@ -101,43 +103,62 @@ function populateCurrent(data) {
     console.log("low day " + i + " " + data.daily[i].temp.min);
     console.log("wind day " + i + " " + data.daily[i].wind_speed);
 
-    //TODO How do I populate this???
-  }
+    var card = document.createElement('div');
+    var cardDate = document.createElement('h4');
+    var cardDesc = document.createElement('p');
+    var cardHumid = document.createElement('p');
+    var cardTempHi = document.createElement('p');
+    var cardTempLo = document.createElement('p');
+    var cardWind = document.createElement('p');
 
-  //   currentQuestion.choices.forEach(function(choice, i){
-  //console.log(questionIndex + "questionIndex")
-  //console.log(i);
-  //console.log(choice);
-  //     let choiceButton = document.createElement("button");
+    function convertFiveDate(data) {
+      currentDate = data.daily[i].dt
+      // from https://www.epochconverter.com/programming/#javascript
+      fiveDate = new Date(currentDate * 1000);
+      console.log("5day human date: " + fiveDate);
 
+    };
+    convertFiveDate(data)
 
-
-
-
-
-
-
-
-
-
-
+    cardDate.innerText = data.daily[i].dt;
 
 
 
-};
+    cardDesc.innerText = data.daily[i].weather[0].description;
+    cardHumid.innerText = "humidity: " + data.daily[i].humidity;
+    cardTempHi.innerText = "Hi Temp: " + data.daily[i].temp.max;
+    cardTempLo.innerText = "Lo Temp: " + data.daily[i].temp.min;
+    cardWind.innerText = "Wind: " + data.daily[i].wind_speed;
+
+    card.append(cardDate);
+    card.append(cardDesc);
+    card.append(cardHumid);
+    card.append(cardTempHi);
+    card.append(cardTempLo);
+    card.append(cardWind);
+    fiveDayList.append(card);
+
+
+
+
+
+
+
+  };
+}; // this is the end of the populate function
 
 //converts current UNIX date to a human date
-function convertDate(data) {
+//TODO make the date.time a string and trunkate
+function convertCurrentDate(data) {
   currentDate = data.current.dt
   // from https://www.epochconverter.com/programming/#javascript
-  var myDate = new Date(currentDate * 1000);
+  myDate = new Date(currentDate * 1000);
   console.log("Current human date: " + myDate);
-  return myDate;
+
 };
 
 
 
-//TODO create function to create cards for the 5 day forecast
 
 
 getWeather();
@@ -168,7 +189,4 @@ function handleFormSubmit(event) {
 
 citySearch.on('submit', handleFormSubmit);
 */
-
-
-
 
