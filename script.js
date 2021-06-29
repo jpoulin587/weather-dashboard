@@ -92,6 +92,7 @@ function populateCurrent(data) {
   // TODO this should populate the 5-day forecast blocks
 
   let forecastDay = data.daily;
+  fiveDayList.innerHTML = "";
   console.log(forecastDay);
   for (let i = 0; i < 5; i++) {
     //const dailyData = forecastDay[i];
@@ -103,6 +104,7 @@ function populateCurrent(data) {
     // console.log("low day " + i + " " + data.daily[i].temp.min);
     // console.log("wind day " + i + " " + data.daily[i].wind_speed);
 
+    
     var card = document.createElement('div');
     var cardDate = document.createElement('h4');
     var cardDesc = document.createElement('p');
