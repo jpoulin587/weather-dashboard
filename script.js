@@ -81,11 +81,11 @@ function populateCurrent(data) {
   // This makes the color of the UV Index adjust with the severity 
   //TODO How do I add also make the text white with the green and red background
   if (data.current.uvi <= 3.0) {
-    $("#current-uvi").css("background-color", "green");
+    $("#current-uvi").css("background-color", "LightGreen");
   } else if (data.current.uvi > 3.0 && data.current.uvi < 6.5) {
     $("#current-uvi").css("background-color", "yellow");
   } else if (data.current.uvi >= 6.5) {
-    $("#current-uvi").css("background-color", "red");
+    $("#current-uvi").css("background-color", "Red");
   };
 
   // populate the 5-day forecast
@@ -178,7 +178,7 @@ function SearchCityForm(e) {
 //week 04 activity 12
 $("#search-history").on("click", ".history", function () {
   let city = $(this).text()
-getWeather(city)
+  getWeather(city)
 });
 
 
