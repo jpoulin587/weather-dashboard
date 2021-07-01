@@ -70,7 +70,6 @@ function populateCurrent(data) {
 
   // show current data  on the index.html
   cityName.text("Current City: " + currentCityPull);
-  //TODO this date is not pulling. 
   todayDate.text("Today's Date: " + myDate);
   currentDesc.text("Current Conditions: " + data.current.weather[0].description);
   currentTemp.text("Current Temp: " + data.current.temp + "F");
@@ -91,7 +90,6 @@ function populateCurrent(data) {
   // populate the 5-day forecast
 
 
-  // TODO this should populate the 5-day forecast blocks
 
   let forecastDay = data.daily;
   fiveDayList.innerHTML = "";
@@ -149,7 +147,7 @@ function populateCurrent(data) {
 }; // this is the end of the populate function
 
 //converts current UNIX date to a human date
-//TODO make the date.time a string and trunkate
+//TODO refactor later to make this better
 function convertCurrentDate(data) {
   currentDate = data.current.dt
   // from https://www.epochconverter.com/programming/#javascript
