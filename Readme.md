@@ -1,4 +1,4 @@
-This is a weather dashboard that will get the current conditions and the weather for any city you choose.  
+This is a weather dashboard that uses a 3rd-party API get the current conditions and the weather for any city you choose.  
 
 You can enter the city and click the search button.  The page will display the current, up to the minute conditions for the city chosen.  
 
